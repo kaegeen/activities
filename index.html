@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Activity Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer>
+        function addActivity() {
+            const activityName = document.getElementById('activityName').value.trim();
+            const activityTime = document.getElementById('activityTime').value.trim();
+            
+            if (!activityName || !activityTime) {
+                alert('Please enter both activity name and time spent.');
+                return;
+            }
+            
+            const activityList = document.getElementById('activityList');
+            const activityItem = document.createElement('div');
+            activityItem.className = 'p-4 mb-2 bg-gray-100 rounded-lg shadow flex justify-between';
+            activityItem.innerHTML = `<span>${activityName} - ${activityTime} hours</span> 
+                                     <button onclick="this.parentElement.remove()" class="text-red-500">Remove</button>`;
+            activityList.appendChild(activityItem);
+            
+            document.getElementById('activityName').value = '';
+            document.getElementById('activityTime').value = '';
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-500 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Daily Activity Tracker</h1>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8">Track Your Daily Activities</h2>
+            <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-8">
+                <div class="mb-4">
+                    <label for="activityName" class="block text-gray-700 font-bold mb-2">Activity Name</label>
+                    <input type="text" id="activityName" class="w-full p-3 border rounded-lg" placeholder="Enter activity name">
+                </div>
+                <div class="mb-4">
+                    <label for="activityTime" class="block text-gray-700 font-bold mb-2">Time Spent (hours)</label>
+                    <input type="number" id="activityTime" class="w-full p-3 border rounded-lg" placeholder="Enter time spent">
+                </div>
+                <button 
+                    onclick="addActivity()"
+                    class="w-full px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600">
+                    Add Activity
+                </button>
+                <div id="activityList" class="mt-6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-500 text-white text-center py-4">
+        <p>&copy; 2025 Daily Activity Tracker. All rights reserved.</p>
+    </footer>
+</body>
+</html>
